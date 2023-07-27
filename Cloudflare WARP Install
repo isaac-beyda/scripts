@@ -1,0 +1,16 @@
+#!/bin/bash
+
+zipfile="Cloudflare_WARP.zip"
+pkgfile="Cloudflare_WARP.pkg"
+logfile="/tmp/cloudflare_warp_install_script.log"
+url='https://1111-releases.cloudflareclient.com/mac/Cloudflare_WARP.zip'
+
+
+echo "--" >> ${logfile}
+echo "`date`: Downloading latest version." >> ${logfile}
+curl -L -s -o /tmp/${zipfile} ${url}
+unzip /tmp/${zipfile} -d /tmp/
+echo "`date`: Installing..." >> ${logfile}
+installer -pkg /tmp/${pkgfile} -target /
+echo "`date`: Deleting installer files." >> ${logfile}
+rm /tmp/"${pkgfile}"
